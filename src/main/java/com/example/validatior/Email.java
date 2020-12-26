@@ -18,7 +18,7 @@ import static org.springframework.util.StringUtils.hasText;
 @Constraint(validatedBy = Validator.class)
 public @interface Email {
 
-    String message() default "Invalid email (Custom validator)";
+    String message() default "Invalid email (Test custom validator)";
 
     Class<?>[] groups() default {};
 
