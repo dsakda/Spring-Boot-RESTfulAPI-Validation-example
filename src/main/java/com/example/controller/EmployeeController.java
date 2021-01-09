@@ -22,7 +22,7 @@ import com.example.model.Employee;
 import com.example.repository.EmployeeRepository;
 
 @RestController
-@RequestMapping("/api/v1/employees")
+@RequestMapping("/api/employees")
 public class EmployeeController {
     @Autowired
     private EmployeeRepository employeeRepository;
