@@ -47,21 +47,13 @@ public class EmployeeController {
     @PutMapping("/{id}")
     public ResponseEntity<Employee> updateEmployee(@PathVariable(value = "id") Long employeeId,
                                                    @Valid @RequestBody Employee employeeDetails) throws ResourceNotFoundException {
-        Employee employee = employeeService.getEmployeeById(employeeId);
-        employee.setEmailAddress(employeeDetails.getEmailAddress());
-        employee.setLastName(employeeDetails.getLastName());
-        employee.setFirstName(employeeDetails.getFirstName());
-        employee.setPassportNumber(employeeDetails.getPassportNumber());
-        employee.setBirthDay(employeeDetails.getBirthDay());
-        final Employee updatedEmployee = employeeService.saveEmployee(employee);
+        final Employee updatedEmployee = employeeService.updateEmployee(employeeId, employeeDetails);
         return ResponseEntity.ok(updatedEmployee);
     }
 
     @DeleteMapping("/{id}")
     public Map<String, Boolean> deleteEmployee(@PathVariable(value = "id") Long employeeId) throws ResourceNotFoundException {
-        Employee employee = employeeService.getEmployeeById(employeeId);
-
-        employeeService.deleteEmployee(employee);
+        employeeService.deleteEmployee(employeeId);
         Map<String, Boolean> response = new HashMap<>();
         response.put("deleted", Boolean.TRUE);
         return response;
