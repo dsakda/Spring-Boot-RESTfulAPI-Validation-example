@@ -26,7 +26,21 @@ public class EmployeeService {
         return employeeRepository.save(employee);
     }
 
-    public void deleteEmployee(Employee employee) {
+    public Employee updateEmployee(Long employeeId, Employee employeeDetails) throws ResourceNotFoundException {
+
+        Employee employee = getEmployeeById(employeeId);
+
+        employee.setEmailAddress(employeeDetails.getEmailAddress());
+        employee.setLastName(employeeDetails.getLastName());
+        employee.setFirstName(employeeDetails.getFirstName());
+        employee.setPassportNumber(employeeDetails.getPassportNumber());
+        employee.setBirthDay(employeeDetails.getBirthDay());
+
+        return saveEmployee(employee);
+    }
+
+    public void deleteEmployee(Long employeeId) throws ResourceNotFoundException {
+        Employee employee = getEmployeeById(employeeId);
         employeeRepository.delete(employee);
     }
 }
